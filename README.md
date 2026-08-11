@@ -107,21 +107,6 @@ npm run build
 
 The generated static files are placed in `site/dist/`.
 
-## Deployment
-
-The repository contains a Jenkins pipeline for a Linux agent with Docker access.
-
-```text
-push to main
-  → Jenkins detects the commit (up to 5 minutes)
-  → Node 22.12.0 is prepared in the workspace
-  → Astro builds site/dist
-  → Docker creates an Nginx image
-  → promethena-site is replaced on host port 31003
-```
-
-The default deploy target is `http://<server>:31003`. Point a reverse proxy at that port for the public domain. The Jenkins agent must be allowed to run Docker commands.
-
 ## Contact
 
 - Website: Promethena
