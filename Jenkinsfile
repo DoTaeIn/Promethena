@@ -21,23 +21,22 @@ pipeline {
         sh '''#!/bin/sh
           set -eu
 
-          if [ -x "$NODE_RUNTIME/bin/node" ]; then
-            "$NODE_RUNTIME/bin/node" --version
-            exit 0
+          if [ ! -x "$NODE_RUNTIME/bin/node" ]; then
+            case "$(uname -m)" in
+              x86_64) NODE_ARCH='x64' ;;
+              aarch64|arm64) NODE_ARCH='arm64' ;;
+              *) echo "Unsupported CPU architecture: $(uname -m)" >&2; exit 1 ;;
+            esac
+
+            rm -rf "$NODE_RUNTIME"
+            mkdir -p "$NODE_RUNTIME"
+            curl -fsSL "https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-$NODE_ARCH.tar.xz" \
+              | tar -xJ --strip-components=1 -C "$NODE_RUNTIME"
           fi
 
-          case "$(uname -m)" in
-            x86_64) NODE_ARCH='x64' ;;
-            aarch64|arm64) NODE_ARCH='arm64' ;;
-            *) echo "Unsupported CPU architecture: $(uname -m)" >&2; exit 1 ;;
-          esac
-
-          rm -rf "$NODE_RUNTIME"
-          mkdir -p "$NODE_RUNTIME"
-          curl -fsSL "https://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-$NODE_ARCH.tar.xz" \
-            | tar -xJ --strip-components=1 -C "$NODE_RUNTIME"
-          "$NODE_RUNTIME/bin/node" --version
-          "$NODE_RUNTIME/bin/npm" --version
+          export PATH="$NODE_RUNTIME/bin:$PATH"
+          node --version
+          npm --version
         '''
       }
     }
