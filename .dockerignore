@@ -1,0 +1,14 @@
+.git
+.agents
+.claude
+.codex
+.cursor
+.impeccable
+node_modules
+site/node_modules
+site/.astro
+site/public/favicon.ico
+site/public/favicon.svg
+Products/_TEMPLATE.md
+*.md
+!Products/*.md
