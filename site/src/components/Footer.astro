@@ -1,0 +1,54 @@
+---
+import type { Lang } from "../lib/i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const prefix = lang === "ko" ? "" : "/en";
+const legalLabel = lang === "ko" ? { terms: "이용약관", privacy: "개인정보처리방침" } : { terms: "Terms", privacy: "Privacy" };
+---
+
+<footer class="site-footer">
+  <div class="container bar">
+    <span>&copy; {new Date().getFullYear()} Promethena</span>
+    <nav class="legal-links">
+      <a href={`${prefix}/terms`}>{legalLabel.terms}</a>
+      <a href={`${prefix}/privacy`}>{legalLabel.privacy}</a>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    margin-top: 40px;
+    padding: 20px 0;
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-dim);
+  }
+
+  .legal-links {
+    display: flex;
+    gap: 16px;
+  }
+
+  .legal-links a {
+    text-decoration: none;
+    color: var(--ink-dim);
+  }
+
+  .legal-links a:hover {
+    color: var(--ink);
+  }
+</style>

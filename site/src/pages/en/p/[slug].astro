@@ -1,0 +1,39 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import ProductDetail from "../../../components/ProductDetail.astro";
+
+export async function getStaticPaths() {
+  const all = await getCollection("products");
+  const koSlugs = new Set(all.filter((p) => p.id.endsWith(".ko")).map((p) => p.id.replace(/\.ko$/, "")));
+  return all
+    .filter((p) => p.id.endsWith(".en"))
+    .map((entry) => {
+      const slug = entry.id.replace(/\.en$/, "");
+      return {
+        params: { slug },
+        props: { entry, hasKo: koSlugs.has(slug) },
+      };
+    });
+}
+
+const { entry, hasKo } = Astro.props;
+const { Content } = await render(entry);
+const lang = "en";
+const slug = entry.id.replace(/\.en$/, "");
+---
+
+<Base lang={lang} altPath={hasKo ? `/p/${slug}` : undefined} title={`${entry.data.name} — Promethena`}>
+  <ProductDetail
+    lang={lang}
+    backHref="/en/"
+    name={entry.data.name}
+    tagline={entry.data.tagline}
+    status={entry.data.status}
+    tags={entry.data.tags}
+    price={entry.data.price}
+    demo={entry.data.demo}
+  >
+    <Content />
+  </ProductDetail>
+</Base>

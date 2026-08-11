@@ -1,0 +1,14 @@
+---
+import Base from "../../layouts/Base.astro";
+import CompanyPage from "../../components/CompanyPage.astro";
+import InquiryLinks from "../../components/InquiryLinks.astro";
+import { CONTACT_EMAIL, inquiryMailto } from "../../lib/i18n";
+---
+<Base lang="en" altPath="/contact/" title="Contact — Promethena">
+  <CompanyPage lang="en" title="Contact" description="Choose an inquiry route and its email subject is filled in for you. Include the product and your current situation when you can.">
+    <h2>Inquiry routes</h2>
+    <InquiryLinks lang="en" />
+    <h2>General inquiry</h2>
+    <p>For anything outside these routes, email <a href={inquiryMailto("en", "general")}>{CONTACT_EMAIL}</a>.</p>
+  </CompanyPage>
+</Base>

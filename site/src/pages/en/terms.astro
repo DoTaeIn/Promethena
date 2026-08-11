@@ -1,0 +1,85 @@
+---
+import Base from "../../layouts/Base.astro";
+import { CONTACT_EMAIL } from "../../lib/i18n";
+---
+
+<Base lang="en" altPath="/terms" title="Terms of Service — Promethena">
+  <article class="legal prose">
+    <a class="back" href="/en/">← Back to dock</a>
+    <h1>Terms of Service</h1>
+    <p class="updated">Last updated: 2026-08-10</p>
+
+    <h2>1. Purpose</h2>
+    <p>
+      These terms govern the use of Promethena (the "Site"), which presents information about
+      software products built by the operator.
+    </p>
+
+    <h2>2. Nature of the service</h2>
+    <p>
+      This Site is a static, informational showcase of products the operator has built. There is
+      no account system, login, or in-site payment. The "Join waitlist" and "Inquire to buy"
+      buttons open an email to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>; any actual
+      purchase or agreement is arranged separately by email. Sending an email does not by itself
+      form a purchase or contract.
+    </p>
+
+    <h2>3. Product status disclosure</h2>
+    <p>
+      Each product shown carries one of four statuses: <code>Idea</code>, <code>Prototype</code>,
+      <code>Beta</code>, or <code>Live</code>. These reflect actual development progress as
+      honestly as possible and do not guarantee completion or a release date. Features, screens,
+      and demo links may change or be discontinued without notice as development continues.
+    </p>
+
+    <h2>4. Intellectual property</h2>
+    <p>
+      The Site's design, text, logo, and each product's description documents belong to the
+      operator. Reproduction, redistribution, or commercial use without the operator's prior
+      written consent is not permitted.
+    </p>
+
+    <h2>5. External links</h2>
+    <p>
+      Some product pages link to external demos or sites. The operator is not responsible for the
+      content, operation, or privacy practices of those external sites.
+    </p>
+
+    <h2>6. Disclaimer</h2>
+    <p>
+      The Site and the information on it are provided "as is," without warranty of any kind,
+      including fitness for a particular purpose or merchantability. To the fullest extent
+      permitted by law, the operator is not liable for damages arising from use of the Site.
+    </p>
+
+    <h2>7. Changes to these terms</h2>
+    <p>
+      These terms may be updated at the operator's discretion; changes take effect once posted
+      here.
+    </p>
+
+    <h2>8. Contact</h2>
+    <p>
+      Questions about these terms can be sent to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+    </p>
+  </article>
+</Base>
+
+<style>
+  .legal {
+    padding: 24px 0 60px;
+  }
+  .updated {
+    color: var(--ink-dim);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+  .back {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ink-dim);
+    text-decoration: none;
+  }
+</style>

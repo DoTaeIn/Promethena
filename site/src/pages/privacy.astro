@@ -1,0 +1,86 @@
+---
+import Base from "../layouts/Base.astro";
+import { CONTACT_EMAIL } from "../lib/i18n";
+---
+
+<Base lang="ko" altPath="/en/privacy" title="개인정보처리방침 — Promethena">
+  <article class="legal prose">
+    <a class="back" href="/">← 도크로</a>
+    <h1>개인정보처리방침</h1>
+    <p class="updated">최종 업데이트: 2026-08-10</p>
+
+    <h2>1. 요약</h2>
+    <p>
+      이 사이트는 서버, 데이터베이스, 회원가입 기능이 없는 정적 사이트입니다. 운영자는 이용자의
+      개인정보를 별도로 수집·저장하지 않습니다. 이 문서는 그럼에도 발생할 수 있는 정보 흐름을
+      투명하게 밝히기 위해 작성되었습니다.
+    </p>
+
+    <h2>2. 브라우저에만 저장되는 정보</h2>
+    <p>
+      화면 우측 상단의 테마(라이트/다크) 선택은 브라우저의 로컬 스토리지에만 저장됩니다. 이 값은
+      운영자의 서버로 전송되지 않으며, 브라우저 데이터를 지우면 함께 삭제됩니다. 별도의 쿠키나
+      추적 스크립트, 방문 분석 도구는 사용하지 않습니다.
+    </p>
+
+    <h2>3. 외부 서비스로 전달되는 정보</h2>
+    <p>
+      워드마크에 쓰이는 서체(Bebas Neue)를 Google Fonts에서 불러옵니다. 이 과정에서 방문자의 IP
+      주소 등 접속 정보가 Google 서버로 전달될 수 있습니다. 자세한 내용은
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+        Google 개인정보처리방침
+      </a>을 참고해 주세요.
+    </p>
+    <p>
+      이 사이트는 Cloudflare Pages로 배포됩니다. 대부분의 호스팅 사업자와 마찬가지로 보안·운영
+      목적의 기본 접속 로그(IP, 접속 시각, 요청 경로 등)가 인프라 단에서 일시적으로 남을 수 있으며,
+      운영자가 이를 별도로 수집·분석하지 않습니다.
+    </p>
+
+    <h2>4. 이메일로 연락하는 경우</h2>
+    <p>
+      "대기자 등록"이나 "구매 문의" 버튼을 눌러 이메일을 보내면, 그 메일에 포함된 이름·이메일
+      주소·문의 내용은 운영자 개인 메일함에 남습니다. 이는 문의 응대 목적으로만 사용되며, 제3자에게
+      제공하거나 마케팅에 이용하지 않습니다. 삭제를 원하시면 같은 이메일로 요청해 주세요.
+    </p>
+
+    <h2>5. 아동의 개인정보</h2>
+    <p>이 사이트는 만 14세 미만 아동을 대상으로 하지 않으며, 이들의 개인정보를 의도적으로 수집하지 않습니다.</p>
+
+    <h2>6. 이용자의 권리</h2>
+    <p>
+      운영자에게 이메일을 보낸 적이 있다면, 해당 메일 내용의 열람·삭제를 요청할 수 있습니다.
+      아래 이메일로 연락해 주세요.
+    </p>
+
+    <h2>7. 정책의 변경</h2>
+    <p>
+      사이트에 결제나 계정 기능이 추가되는 등 실제로 수집하는 정보가 늘어나면 이 문서를 그에 맞게
+      업데이트합니다. 변경 사항은 이 페이지에 반영되며, 게시 시점부터 적용됩니다.
+    </p>
+
+    <h2>8. 문의</h2>
+    <p>
+      개인정보 관련 문의는 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>로 연락해 주세요.
+    </p>
+  </article>
+</Base>
+
+<style>
+  .legal {
+    padding: 24px 0 60px;
+  }
+  .updated {
+    color: var(--ink-dim);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+  .back {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ink-dim);
+    text-decoration: none;
+  }
+</style>

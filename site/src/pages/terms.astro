@@ -1,0 +1,83 @@
+---
+import Base from "../layouts/Base.astro";
+import { CONTACT_EMAIL } from "../lib/i18n";
+---
+
+<Base lang="ko" altPath="/en/terms" title="이용약관 — Promethena">
+  <article class="legal prose">
+    <a class="back" href="/">← 도크로</a>
+    <h1>이용약관</h1>
+    <p class="updated">최종 업데이트: 2026-08-10</p>
+
+    <h2>1. 목적</h2>
+    <p>
+      이 약관은 Promethena(이하 "사이트")가 제공하는 제품 소개 정보 및 관련 서비스 이용과 관련하여
+      운영자와 이용자 간의 권리·의무를 정합니다.
+    </p>
+
+    <h2>2. 서비스의 성격</h2>
+    <p>
+      이 사이트는 운영자가 만든 소프트웨어 제품을 소개하는 정적 정보 사이트입니다. 회원가입, 로그인,
+      사이트 내 결제 기능은 존재하지 않습니다. "대기자 등록"과 "구매 문의" 버튼은 모두 이메일(
+      <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>) 연결이며, 실제 계약·결제는 이메일을 통한
+      별도 협의로 이루어집니다. 이메일을 보내는 것만으로 구매나 계약이 성립하지 않습니다.
+    </p>
+
+    <h2>3. 제품 상태에 대한 고지</h2>
+    <p>
+      사이트에 소개된 각 제품에는 <code>구상 중</code>, <code>프로토타입</code>, <code>베타</code>,
+      <code>출시</code> 중 하나의 상태가 표시됩니다. 이는 실제 개발 진행 상황을 최대한 정직하게 반영한
+      것이며, 완성이나 특정 시점까지의 출시를 보장하지 않습니다. 표시된 기능·화면·데모는 개발 진행에
+      따라 사전 고지 없이 변경되거나 중단될 수 있습니다.
+    </p>
+
+    <h2>4. 지적재산권</h2>
+    <p>
+      사이트의 디자인, 텍스트, 로고 및 각 제품 소개 문서에 대한 권리는 운영자에게 있습니다. 운영자의
+      사전 서면 동의 없이 이를 복제, 배포, 상업적으로 이용할 수 없습니다.
+    </p>
+
+    <h2>5. 외부 링크</h2>
+    <p>
+      일부 제품 페이지에는 데모 등 외부 사이트로 연결되는 링크가 있을 수 있습니다. 외부 사이트의 내용과
+      운영, 개인정보 처리에 대해서는 운영자가 책임지지 않습니다.
+    </p>
+
+    <h2>6. 면책조항</h2>
+    <p>
+      사이트와 사이트에 소개된 정보는 "있는 그대로" 제공되며, 특정 목적에의 적합성이나 상품성을
+      포함한 어떠한 보증도 하지 않습니다. 법이 허용하는 최대한의 범위에서, 사이트 이용으로 발생한
+      손해에 대해 운영자는 책임을 지지 않습니다.
+    </p>
+
+    <h2>7. 약관의 변경</h2>
+    <p>
+      이 약관은 운영자의 판단에 따라 변경될 수 있으며, 변경 시 이 페이지에 반영합니다. 변경된 약관은
+      게시 시점부터 효력이 발생합니다.
+    </p>
+
+    <h2>8. 문의</h2>
+    <p>
+      이 약관에 대한 문의는 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>로 연락해 주세요.
+    </p>
+  </article>
+</Base>
+
+<style>
+  .legal {
+    padding: 24px 0 60px;
+  }
+  .updated {
+    color: var(--ink-dim);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+  .back {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ink-dim);
+    text-decoration: none;
+  }
+</style>

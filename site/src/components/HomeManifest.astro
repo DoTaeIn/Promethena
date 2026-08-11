@@ -1,0 +1,44 @@
+---
+import type { Lang } from "../lib/i18n";
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const isKo = lang === "ko";
+---
+
+<section class="manifest" aria-labelledby="manifest-title">
+  <div class="statement">
+    <h1 id="manifest-title">{isKo ? "만들고, 도입하고, 확장합니다." : "Build it. Adopt it. Extend it."}</h1>
+    <p>{isKo
+      ? "Promethena는 직접 만든 소프트웨어를 제공합니다. 개인은 제품을 자유롭게 살펴보고, 조직은 도입과 업무 맞춤 확장을 문의할 수 있습니다."
+      : "Promethena makes focused software. Individuals can explore it freely; organizations can ask about adoption and tailored implementation."}</p>
+  </div>
+  <div class="routes">
+    <a href={isKo ? "/solutions/" : "/en/solutions/"}>
+      <strong>{isKo ? "솔루션 도입" : "Adopt a solution"}</strong>
+      <span>{isKo ? "개인 사용부터 조직 단위 도입까지" : "From personal use to organization-wide adoption"}</span>
+    </a>
+    <a href={isKo ? "/custom/" : "/en/custom/"}>
+      <strong>{isKo ? "맞춤 개발" : "Custom work"}</strong>
+      <span>{isKo ? "제품을 당신의 업무 흐름에 맞게" : "Fit a product to your workflow"}</span>
+    </a>
+  </div>
+</section>
+
+<section class="dock-intro" aria-labelledby="dock-title">
+  <h2 id="dock-title">{isKo ? "현재 도크" : "Current dock"}</h2>
+  <p>{isKo ? "상태는 약속이 아니라 현재 위치입니다. 색과 수위는 각 제품이 진수에 얼마나 가까운지 말합니다." : "Status is a position, not a promise. Color and waterline show how close each product is to launch."}</p>
+</section>
+
+<style>
+  .manifest { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(230px, .8fr); gap: 28px; padding: 38px 0 34px; border-bottom: 1px solid var(--line); }
+  .statement h1, .dock-intro h2, .home-contact h2 { margin: 0 0 10px; font-family: var(--font-display); font-weight: 400; letter-spacing: .015em; }
+  .statement h1 { max-width: 11ch; font-size: clamp(2.8rem, 7vw, 4.6rem); line-height: .9; word-break: keep-all; }
+  .statement p, .dock-intro p, .home-contact p { max-width: 64ch; margin: 0; color: var(--ink-dim); }
+  .routes { display: grid; align-content: start; border-top: 1px solid var(--line); }
+  .routes a { display: grid; gap: 4px; padding: 16px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
+  .routes strong { font-family: var(--font-mono); font-size: .85rem; color: var(--cyan-ink); }
+  .routes span { font-size: .85rem; color: var(--ink-dim); }
+  .dock-intro { padding: 34px 0 20px; }
+  .dock-intro h2, .home-contact h2 { font-size: 2rem; }
+  @media (max-width: 640px) { .manifest { grid-template-columns: 1fr; } .statement h1 { max-width: none; font-size: 3rem; } }
+</style>

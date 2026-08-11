@@ -1,0 +1,20 @@
+---
+import InquiryLinks from "./InquiryLinks.astro";
+import type { Lang } from "../lib/i18n";
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const isKo = lang === "ko";
+---
+
+<section class="home-contact" aria-labelledby="contact-title">
+  <h2 id="contact-title">{isKo ? "어떤 항구로 오셨나요?" : "What brings you to the dock?"}</h2>
+  <p>{isKo ? "개인 사용, 조직 도입, 또는 기존 제품의 맞춤 확장 중 목적에 맞춰 바로 문의하세요." : "Choose the route that fits: personal use, organization adoption, or an extension of an existing product."}</p>
+  <InquiryLinks lang={lang} />
+</section>
+
+<style>
+  .home-contact { margin: 44px 0 56px; padding: 28px 0 0; border-top: 1px solid var(--line); }
+  h2 { margin: 0 0 10px; font-family: var(--font-display); font-weight: 400; font-size: 2rem; letter-spacing: .015em; }
+  p { max-width: 64ch; margin: 0; color: var(--ink-dim); }
+  .inquiries { margin-top: 20px; }
+</style>

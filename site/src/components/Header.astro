@@ -1,0 +1,69 @@
+---
+import type { Lang } from "../lib/i18n";
+
+interface Props { lang: Lang; altPath?: string; }
+
+const { lang, altPath } = Astro.props;
+const home = lang === "ko" ? "/" : "/en/";
+const routes = lang === "ko"
+  ? [{ href: "/solutions/", label: "솔루션" }, { href: "/custom/", label: "맞춤 개발" }, { href: "/about/", label: "회사 소개" }, { href: "/contact/", label: "문의" }]
+  : [{ href: "/en/solutions/", label: "Solutions" }, { href: "/en/custom/", label: "Custom work" }, { href: "/en/about/", label: "About" }, { href: "/en/contact/", label: "Contact" }];
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="wordmark" href={home}>
+      <span class="mark-plate">
+        <img class="mark mark-light" src="/promethena-mark.png" width="32" height="32" alt="" />
+        <img class="mark mark-dark" src="/promethena-mark-dark.png" width="32" height="32" alt="" />
+      </span>
+      <span>PROMETHENA</span>
+    </a>
+    <nav aria-label={lang === "ko" ? "주 메뉴" : "Primary navigation"}>
+      {routes.map((route) => <a href={route.href}>{route.label}</a>)}
+    </nav>
+    <div class="controls">
+      {altPath && <a class="lang-toggle" href={altPath}>{lang === "ko" ? "EN" : "KO"}</a>}
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 15.4A8.4 8.4 0 0 1 8.6 4.5 8.4 8.4 0 1 0 19.5 15.4Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.getElementById("theme-toggle")?.addEventListener("click", () => {
+    const root = document.documentElement;
+    const system = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    const current = root.getAttribute("data-theme") || system;
+    const next = current === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  });
+</script>
+
+<style>
+  .site-header { border-bottom: 1px solid var(--line); background: var(--bg); }
+  .bar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px; padding: 18px 20px; }
+  .wordmark { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-size: 1.6rem; letter-spacing: .06em; text-decoration: none; color: var(--ink); }
+  .mark-plate { display: grid; place-items: center; width: 29px; height: 29px; }
+  .mark { grid-area: 1 / 1; width: 25px; height: 25px; object-fit: contain; transform: translateY(-1px); }
+  .mark-dark { display: none; }
+  :global(:root[data-theme="dark"]) .mark-light { display: none; }
+  :global(:root[data-theme="dark"]) .mark-dark { display: block; }
+  :global(:root[data-theme="light"]) .mark-light { display: block; }
+  :global(:root[data-theme="light"]) .mark-dark { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) .mark-light { display: none; }
+    :global(:root:not([data-theme="light"])) .mark-dark { display: block; }
+  }
+  nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; }
+  nav a, .lang-toggle { font-family: var(--font-mono); font-size: .72rem; color: var(--ink-dim); text-decoration: none; }
+  nav a { padding: 4px 0; border-bottom: 1px solid transparent; }
+  nav a:hover, nav a:focus-visible { color: var(--ink); border-color: var(--cyan-ink); }
+  .controls { display: flex; align-items: center; gap: 10px; }
+  .lang-toggle, .theme-toggle { border: 1px solid var(--line); border-radius: 2px; padding: 4px 8px; }
+  .theme-toggle { display: grid; place-items: center; background: transparent; color: var(--ink); line-height: 1; cursor: pointer; }
+  .theme-toggle svg { width: 15px; height: 15px; }
+  @media (max-width: 720px) { .bar { grid-template-columns: 1fr auto; gap: 10px; } nav { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; gap: 14px; overflow-x: auto; padding-bottom: 2px; } }
+</style>

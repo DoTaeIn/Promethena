@@ -1,0 +1,87 @@
+---
+import Base from "../../layouts/Base.astro";
+import { CONTACT_EMAIL } from "../../lib/i18n";
+---
+
+<Base lang="en" altPath="/privacy" title="Privacy Policy — Promethena">
+  <article class="legal prose">
+    <a class="back" href="/en/">← Back to dock</a>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: 2026-08-10</p>
+
+    <h2>1. Summary</h2>
+    <p>
+      This Site is static — no server, no database, no account system. The operator does not
+      separately collect or store personal data. This document exists to be transparent about
+      what limited data flows can still happen.
+    </p>
+
+    <h2>2. Data kept only in your browser</h2>
+    <p>
+      The light/dark theme choice in the header is saved to your browser's local storage only. It
+      is never sent to the operator's server and is removed if you clear your browser data. The
+      Site does not use cookies, tracking scripts, or analytics.
+    </p>
+
+    <h2>3. Data shared with third parties</h2>
+    <p>
+      The wordmark font (Bebas Neue) is loaded from Google Fonts. Loading it may send your IP
+      address and other connection details to Google's servers. See
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+        Google's Privacy Policy
+      </a> for details.
+    </p>
+    <p>
+      The Site is hosted on Cloudflare Pages. Like most hosting providers, basic access logs (IP,
+      timestamp, requested path) may be kept briefly at the infrastructure level for security and
+      operations; the operator does not separately collect or analyze this data.
+    </p>
+
+    <h2>4. If you email us</h2>
+    <p>
+      Clicking "Join waitlist" or "Inquire to buy" opens an email. Any name, email address, or
+      message you send ends up in the operator's personal inbox and is used only to respond to
+      you — never shared with third parties or used for marketing. To have it deleted, just ask
+      via the same email.
+    </p>
+
+    <h2>5. Children's privacy</h2>
+    <p>This Site is not directed at children and does not knowingly collect their personal data.</p>
+
+    <h2>6. Your rights</h2>
+    <p>
+      If you've emailed the operator, you can request to see or delete that message at any time —
+      contact us below.
+    </p>
+
+    <h2>7. Changes to this policy</h2>
+    <p>
+      If the Site later adds payments or accounts and starts collecting more data, this document
+      will be updated to match. Changes take effect once posted here.
+    </p>
+
+    <h2>8. Contact</h2>
+    <p>
+      Privacy questions can be sent to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+    </p>
+  </article>
+</Base>
+
+<style>
+  .legal {
+    padding: 24px 0 60px;
+  }
+  .updated {
+    color: var(--ink-dim);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+  .back {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ink-dim);
+    text-decoration: none;
+  }
+</style>

@@ -1,0 +1,14 @@
+---
+import Base from "../layouts/Base.astro";
+import CompanyPage from "../components/CompanyPage.astro";
+import { inquiryMailto } from "../lib/i18n";
+---
+<Base lang="ko" altPath="/en/custom/" title="맞춤 개발 — Promethena">
+  <CompanyPage lang="ko" title="도입·확장 개발" description="Promethena 제품을 구매하거나 검토한 조직이 직접 개발하기 어려울 때, 실제 업무 흐름에 맞게 도입하고 확장합니다.">
+    <h2>무엇을 함께 하나요</h2>
+    <ul><li>기존 솔루션을 조직의 업무 흐름에 맞게 구성</li><li>필요한 기능과 화면의 맞춤 확장</li><li>프로토타입을 실제 운영 도구로 발전시키는 구현</li></ul>
+    <h2>진행 방식</h2>
+    <ol><li>문의에서 제품·문제·현재 환경을 확인합니다.</li><li>가능한 범위와 제안 방식을 정리합니다.</li><li>합의한 범위에서 도입 또는 확장을 진행합니다.</li></ol>
+    <p><a class="action" href={inquiryMailto("ko", "custom")}>도입·확장 개발 문의</a></p>
+  </CompanyPage>
+</Base>

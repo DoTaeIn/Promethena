@@ -1,0 +1,22 @@
+---
+import { inquiryMailto, type Lang } from "../lib/i18n";
+interface Props { lang: Lang; product?: string; compact?: boolean; }
+const { lang, product, compact = false } = Astro.props;
+const copy = lang === "ko"
+  ? { personal: "개인 사용 문의", organization: "조직 도입 문의", custom: "도입·확장 문의" }
+  : { personal: "Personal use", organization: "Organization adoption", custom: "Implementation & extension" };
+---
+
+<div class:list={["inquiries", { compact }]}> 
+  <a href={inquiryMailto(lang, "personal", product)}>{copy.personal}</a>
+  <a href={inquiryMailto(lang, "organization", product)}>{copy.organization}</a>
+  <a href={inquiryMailto(lang, "custom", product)}>{copy.custom}</a>
+</div>
+
+<style>
+  .inquiries { display: flex; flex-wrap: wrap; gap: 10px; }
+  .inquiries a { display: inline-flex; align-items: center; min-height: 38px; padding: 8px 13px; border: 1px solid var(--line); border-radius: 2px; font-family: var(--font-mono); font-size: .75rem; text-decoration: none; }
+  .inquiries a:first-child { border-color: var(--cyan-ink); color: var(--cyan-ink); }
+  .inquiries a:hover { background: var(--bg); }
+  .inquiries.compact a { min-height: 32px; padding: 6px 9px; font-size: .7rem; }
+</style>

@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+import Slot from "./Slot.astro";
+import HomeManifest from "./HomeManifest.astro";
+import HomeContact from "./HomeContact.astro";
+import { ui, type Lang } from "../lib/i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const all = await getCollection("products");
+const products = all.filter((p) => p.id.endsWith(`.${lang}`));
+---
+
+<p class="tagline">{ui[lang].tagline}</p>
+<HomeManifest lang={lang} />
+
+{
+  products.length === 0 ? (
+    <p class="empty">{ui[lang].emptyDock}</p>
+  ) : (
+    <div class="dock">
+      {products.map((p, i) => (
+        <Slot
+          index={i}
+          slug={p.id.replace(new RegExp(`\\.${lang}$`), "")}
+          name={p.data.name}
+          tagline={p.data.tagline}
+          status={p.data.status}
+          tags={p.data.tags}
+          price={p.data.price}
+          lang={lang}
+        />
+      ))}
+    </div>
+  )
+}
+
+<HomeContact lang={lang} />
+
+<style>
+  .tagline {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+    margin: 24px 0;
+  }
+
+  .dock {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .empty {
+    color: var(--ink-dim);
+    font-family: var(--font-mono);
+    padding: 40px 0;
+  }
+</style>

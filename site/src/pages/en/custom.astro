@@ -1,0 +1,14 @@
+---
+import Base from "../../layouts/Base.astro";
+import CompanyPage from "../../components/CompanyPage.astro";
+import { inquiryMailto } from "../../lib/i18n";
+---
+<Base lang="en" altPath="/custom/" title="Custom work — Promethena">
+  <CompanyPage lang="en" title="Implementation & extension" description="When an organization has adopted or is considering a Promethena product but cannot build the needed changes itself, we help fit it to real work.">
+    <h2>What we work on</h2>
+    <ul><li>Configure an existing solution around your workflow</li><li>Extend the features and interfaces you need</li><li>Move a prototype toward an operating tool</li></ul>
+    <h2>How it starts</h2>
+    <ol><li>We review the product, problem, and current environment.</li><li>We outline a feasible scope and proposal.</li><li>We implement the agreed adoption or extension work.</li></ol>
+    <p><a class="action" href={inquiryMailto("en", "custom")}>Ask about implementation & extension</a></p>
+  </CompanyPage>
+</Base>

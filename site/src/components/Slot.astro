@@ -1,0 +1,219 @@
+---
+import { statusLabel, type Lang } from "../lib/i18n";
+
+interface Props {
+  index: number;
+  slug: string;
+  name: string;
+  tagline: string;
+  status: "idea" | "prototype" | "beta" | "live";
+  tags: string[];
+  price?: number;
+  lang: Lang;
+}
+
+const { index, slug, name, tagline, status, tags, price, lang } = Astro.props;
+
+const fillLevel: Record<string, number> = {
+  idea: 0,
+  prototype: 42,
+  beta: 78,
+  live: 100,
+};
+
+const href = lang === "ko" ? `/p/${slug}` : `/en/p/${slug}`;
+const num = String(index + 1).padStart(2, "0");
+---
+
+<a class="slot" data-status={status} href={href}>
+  <div class="gauge">
+    <span class="hull-no">#{num}</span>
+    <div class="hull">
+      <div class="fill" style={`height:${fillLevel[status]}%`}></div>
+      {status === "beta" && <div class="waterline"></div>}
+    </div>
+  </div>
+
+  <div class="body">
+    <h2 class="name">{name}</h2>
+    <p class="tagline">{tagline}</p>
+    <ul class="tags">
+      {tags.map((t) => <li>{t}</li>)}
+    </ul>
+  </div>
+
+  <div class="meta">
+    <span class="status-label">{statusLabel[lang][status]}</span>
+    {status === "live" && price !== undefined && (
+      <span class="price-plate">
+        {price === 0 ? (lang === "ko" ? "무료" : "Free") : `$${price}`}
+      </span>
+    )}
+  </div>
+</a>
+
+<style>
+  .slot {
+    display: grid;
+    grid-template-columns: 72px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 18px 20px;
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 150ms ease;
+  }
+
+  .slot:hover {
+    border-color: var(--steel-ink);
+  }
+
+  .gauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .hull-no {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--ink-dim);
+  }
+
+  .hull {
+    position: relative;
+    width: 40px;
+    height: 44px;
+    border: 2px solid var(--steel);
+    border-radius: 3px;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .slot[data-status="idea"] .hull {
+    border-style: dashed;
+  }
+
+  .fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--steel);
+  }
+
+  .slot[data-status="prototype"] .hull {
+    border-color: var(--amber-ink);
+  }
+  .slot[data-status="prototype"] .fill {
+    background: var(--amber);
+  }
+
+  .slot[data-status="beta"] .hull,
+  .slot[data-status="live"] .hull {
+    border-color: var(--cyan-ink);
+  }
+  .slot[data-status="beta"] .fill,
+  .slot[data-status="live"] .fill {
+    background: var(--cyan);
+  }
+
+  .waterline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 78%;
+    height: 2px;
+    background: var(--cyan-ink);
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    font-size: 1.5rem;
+    margin: 0 0 2px;
+  }
+
+  .tagline {
+    margin: 0 0 8px;
+    color: var(--ink-dim);
+    font-size: 0.95rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tags li {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--ink-dim);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 2px 6px;
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    text-align: right;
+  }
+
+  .status-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-dim);
+  }
+
+  .slot[data-status="prototype"] .status-label {
+    color: var(--amber-ink);
+  }
+  .slot[data-status="beta"] .status-label,
+  .slot[data-status="live"] .status-label {
+    color: var(--cyan-ink);
+  }
+
+  .price-plate {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 1px solid var(--cyan-ink);
+    color: var(--cyan-ink);
+    border-radius: 2px;
+    padding: 3px 8px;
+  }
+
+  @media (max-width: 560px) {
+    .slot {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "gauge"
+        "body"
+        "meta";
+      gap: 12px;
+    }
+    .gauge {
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+    .meta {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>

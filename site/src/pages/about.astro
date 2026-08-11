@@ -1,0 +1,14 @@
+---
+import Base from "../layouts/Base.astro";
+import CompanyPage from "../components/CompanyPage.astro";
+import { GITHUB_URL } from "../lib/i18n";
+---
+<Base lang="ko" altPath="/en/about/" title="회사 소개 — Promethena">
+  <CompanyPage lang="ko" title="Promethena" description="직접 만든 소프트웨어를 먼저 내놓고, 필요한 조직에는 도입과 확장을 지원하는 독립 소프트웨어 회사입니다.">
+    <h2>먼저 만들고, 정직하게 보입니다</h2>
+    <p>Promethena는 완성된 제품만 보여주지 않습니다. 제품이 어디까지 만들어졌는지, 무엇이 아직 없는지를 함께 공개합니다. 상태는 홍보 문구가 아니라 현재 위치입니다.</p>
+    <h2>논리로 만들고, 웹으로 보냅니다</h2>
+    <p>문제의 핵심 구조를 먼저 만들고, 실제로 쓸 수 있는 형태로 웹에 전달합니다. 제품이 필요해진 조직에는 그 구조를 업무에 맞게 확장합니다.</p>
+    <p><a class="action" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">GitHub에서 작업 보기</a></p>
+  </CompanyPage>
+</Base>

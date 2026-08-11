@@ -1,0 +1,14 @@
+---
+import Base from "../../layouts/Base.astro";
+import CompanyPage from "../../components/CompanyPage.astro";
+import { GITHUB_URL } from "../../lib/i18n";
+---
+<Base lang="en" altPath="/about/" title="About — Promethena">
+  <CompanyPage lang="en" title="Promethena" description="An independent software company that releases its own products first, then helps organizations adopt and extend them when needed.">
+    <h2>Build first. Show the truth.</h2>
+    <p>Promethena does not show only finished products. Each product states what exists and what does not. Status is a position, not marketing copy.</p>
+    <h2>Carved in logic. Shipped to the web.</h2>
+    <p>We build the core structure of a problem first, then deliver it in a form people can use on the web. When an organization needs it, that structure can be extended around its work.</p>
+    <p><a class="action" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">See the work on GitHub</a></p>
+  </CompanyPage>
+</Base>

@@ -1,0 +1,11 @@
+---
+import Base from "../../layouts/Base.astro";
+import Dock from "../../components/Dock.astro";
+import { ui } from "../../lib/i18n";
+
+const lang = "en";
+---
+
+<Base lang={lang} altPath="/" title={`Promethena — ${ui[lang].tagline}`}>
+  <Dock lang={lang} />
+</Base>
