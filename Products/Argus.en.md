@@ -1,43 +1,40 @@
 ---
 name: Argus
-tagline: Product intelligence that respects your customers.
+tagline: See the moments that move your product forward.
 status: beta
 tags: [product-analytics, event-tracking, privacy, saas]
 price: 0
 demo: http://localhost:8787/app
 ---
 
-# Argus
+# Understand the story behind every click
 
-Argus is a first-party product analytics platform for teams that need clear, trustworthy answers about how people use their product.
+Great products are built on small signals: the page a customer returns to, the step where they hesitate, the moment they decide to buy.
 
-It turns browser activity into a structured event stream, joins anonymous activity to a signed-in user when they identify themselves, and presents the result in a focused dashboard and event explorer.
+Argus brings those signals together in one calm, clear workspace—so your team can spend less time stitching data together and more time making the product better.
 
-## What it does
+## From first visit to meaningful action
 
-- Automatically tracks page views, clicks, form submissions, sessions, and UTM context through a lightweight browser SDK.
-- Queues events locally when a visitor is offline and sends them when the connection returns.
-- Deduplicates retried events using a project-scoped event ID.
-- Resolves anonymous visitors to an identified user after login, including prior events from that visitor.
-- Shows seven-day event, visitor, session, purchase, and visitor-trend metrics.
-- Provides a searchable event explorer for event names, anonymous IDs, user IDs, sessions, timestamps, and event properties.
+Add one lightweight tracker to your site and Argus begins capturing the journey: page views, clicks, form submissions, sessions, and campaign context. When someone signs in, their earlier anonymous activity becomes part of the same story.
 
-## Built for responsible analytics
+No more guessing whether a conversion came from a new visitor or a returning customer. No more double-counting when a connection drops and retries.
 
-Argus separates browser-facing ingestion keys from private administration keys, restricts ingestion to approved origins, and stores API-key and session-token hashes rather than raw values. It also avoids collecting full URLs with query strings, reducing accidental capture of tokens or personal data.
+## A dashboard made for decisions
 
-The current beta includes authenticated workspaces, server-side project scoping, CSP and browser security headers, login throttling, CSRF-oriented origin checks, and PostgreSQL-backed persistence.
+Start each day with the numbers that matter:
 
-## Run locally
+- How many people visited, started a session, and completed a purchase?
+- Is traffic growing or changing direction?
+- Which customer actions are happening right now?
 
-```sh
-docker compose up --build -d
-docker compose exec api node src/migrate.mjs
-docker compose exec api node src/seed.mjs
-```
+When you need the detail behind a metric, open Event Explorer. Search events and follow activity by visitor, identified user, session, time, or custom property.
 
-Create your environment file from `.env.example`, replace every example secret, then open the demo at `http://localhost:8787/app`.
+## Analytics with boundaries
 
-## Status
+Customers should not have to trade privacy for a better product. Argus is designed to keep that line clear: collection is limited to approved sites, public collection keys cannot read your analytics, and URL query strings are left out to reduce accidental capture of sensitive information.
 
-Argus is in beta. The tracking engine, authentication, dashboard, and event explorer are working. Planned production hardening includes multi-factor authentication, email verification and recovery, distributed rate limiting, audit logs, consent controls, and advanced analytics such as funnels and retention.
+## Built for teams finding their next insight
+
+Argus is currently in beta, with the foundations ready for real product learning: reliable collection, identity resolution, a live workspace, and a focused event explorer. Funnels, retention, richer segments, and automated alerts are next.
+
+Open the demo to see the workspace in action.
