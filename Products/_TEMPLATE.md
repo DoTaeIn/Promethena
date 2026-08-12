@@ -8,3 +8,10 @@ demo: https://...    # optional. 없으면 데모 버튼 숨김
 ---
 
 본문은 자유 형식. 카드/목록에는 위 프론트매터만 쓰인다.
+
+## File name
+
+- Korean: `{slug}.ko.md`
+- English: `{slug}.en.md`
+
+Both files must use the same `{slug}`. For example: `Argus.ko.md` and `Argus.en.md`.
