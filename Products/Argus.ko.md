@@ -4,7 +4,6 @@ tagline: 제품을 앞으로 움직이는 순간을 보세요.
 status: beta
 tags: [제품-분석, 이벤트-추적, 개인정보, saas]
 price: 0
-demo: http://localhost:8787/app
 ---
 
 # 모든 클릭 뒤에 있는 이야기를 이해하세요

@@ -4,7 +4,6 @@ tagline: See the moments that move your product forward.
 status: beta
 tags: [product-analytics, event-tracking, privacy, saas]
 price: 0
-demo: http://localhost:8787/app
 ---
 
 # Understand the story behind every click
