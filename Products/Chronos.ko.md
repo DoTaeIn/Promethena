@@ -1,6 +1,7 @@
 ---
 name: Chronos
 tagline: 서버 시간과 반응속도를 반영해 클릭 타이밍을 알려주는 수강신청 보조 도구
+kind: tool
 status: live
 tags: [Chrome 확장 프로그램, 수강신청, 타이밍 보조, 네트워크 측정, 로컬 우선]
 ---

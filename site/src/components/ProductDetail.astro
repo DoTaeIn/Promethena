@@ -1,14 +1,17 @@
 ---
-import { statusLabel, ui, inquiryMailto, type Lang } from "../lib/i18n";
+import { statusLabel, ui, inquiryMailto, toolCopy, type Lang } from "../lib/i18n";
 import InquiryLinks from "./InquiryLinks.astro";
 
 interface Props {
   lang: Lang; backHref: string; name: string; tagline: string;
   status: "idea" | "prototype" | "beta" | "live"; tags: string[]; price?: number; demo?: string;
+  kind?: "saas" | "tool";
+  install?: string;
   /** 대조 완료된 방침이 있을 때만 넘어온다. */
   privacyHref?: string;
 }
-const { lang, backHref, name, tagline, status, tags, price, demo, privacyHref } = Astro.props;
+const { lang, backHref, name, tagline, status, tags, price, demo, privacyHref, kind = "saas", install } = Astro.props;
+const tool = toolCopy[lang];
 const copy = lang === "ko"
   ? { waitlist: "개인 사용 대기 등록", demo: "데모 보기", buy: "개인 사용 문의", idle: "아직 구상 단계입니다.", free: "무료", privacy: "개인정보처리방침" }
   : { waitlist: "Join personal waitlist", demo: "View demo", buy: "Ask about personal use", idle: "Still in the idea stage.", free: "Free", privacy: "Privacy policy" };
@@ -24,11 +27,16 @@ const copy = lang === "ko"
   </header>
   <div class="actions">
     {status === "idea" && <p class="idle">{copy.idle}</p>}
-    {status === "prototype" && <a class="btn primary" href={inquiryMailto(lang, "waitlist", name)}>{copy.waitlist}</a>}
-    {status === "beta" && <a class="btn primary" href={inquiryMailto(lang, "personal", name)}>{copy.buy}</a>}
-    {status === "live" && <><span class="price-plate">{price === 0 ? copy.free : price !== undefined ? `$${price}` : null}</span><a class="btn primary" href={inquiryMailto(lang, "personal", name)}>{copy.buy}</a></>}
+    {kind === "tool" && status !== "idea" && (
+      install
+        ? <a class="btn primary" href={install} target="_blank" rel="noopener noreferrer">{tool.install}</a>
+        : <p class="idle">{tool.soon}</p>
+    )}
+    {kind === "saas" && status === "prototype" && <a class="btn primary" href={inquiryMailto(lang, "waitlist", name)}>{copy.waitlist}</a>}
+    {kind === "saas" && status === "beta" && <a class="btn primary" href={inquiryMailto(lang, "personal", name)}>{copy.buy}</a>}
+    {kind === "saas" && status === "live" && <><span class="price-plate">{price === 0 ? copy.free : price !== undefined ? `$${price}` : null}</span><a class="btn primary" href={inquiryMailto(lang, "personal", name)}>{copy.buy}</a></>}
     {(status === "beta" || status === "live") && demo && <a class="btn" href={demo} target="_blank" rel="noopener noreferrer">{copy.demo}</a>}
-    {status !== "idea" && <InquiryLinks lang={lang} product={name} compact />}
+    {status !== "idea" && kind === "saas" && <InquiryLinks lang={lang} product={name} compact />}
   </div>
   <div class="prose"><slot /></div>
   {privacyHref && (

@@ -23,6 +23,11 @@ export const ui: Record<Lang, { tagline: string; emptyDock: string; home: string
   },
 };
 
+export const toolCopy = {
+  ko: { install: "설치하기", soon: "배포 준비 중입니다.", source: "소스 보기" },
+  en: { install: "Install", soon: "Not yet published.", source: "View source" },
+} as const;
+
 export type InquiryKind = "personal" | "organization" | "custom" | "general" | "waitlist" | "buy";
 
 const subjects: Record<Lang, Record<InquiryKind, (name?: string) => string>> = {

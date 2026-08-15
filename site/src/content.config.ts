@@ -15,8 +15,12 @@ const products = defineCollection({
     tagline: z.string(),
     status: z.enum(["idea", "prototype", "beta", "live"]),
     tags: z.array(z.string()),
+    // saas = 문의로 파는 것, tool = 스토어·저장소에서 받아 쓰는 것
+    kind: z.enum(["saas", "tool"]).default("saas"),
     price: z.number().optional(),
     demo: z.string().url().optional(),
+    // tool 전용. 배포 전이면 비워둔다.
+    install: z.string().url().optional(),
   }),
 });
 

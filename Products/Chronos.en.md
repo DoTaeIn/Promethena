@@ -1,6 +1,7 @@
 ---
 name: Chronos
 tagline: A timing assistant for course registration that accounts for server time and reaction speed
+kind: tool
 status: live
 tags: [Chrome extension, course registration, timing assistant, network measurement, local-first]
 ---
