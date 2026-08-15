@@ -1,66 +1,66 @@
 ---
 name: Hestia
-tagline: 지워지지 않는 팀의 문서 공간
+tagline: A team document space that never erases
 status: prototype
 tags: [knowledge-base, collaboration, documentation, saas]
 ---
 
 # Hestia
 
-팀이 함께 쓰는 문서 공간입니다. 스페이스 아래에 페이지를 트리로 쌓고, 여러 사람이 같이 고치고, 나중에 다시 찾습니다.
+A document space your team writes in together. Stack pages in a tree under a space, edit them with other people, and find them again later.
 
-다른 점은 하나입니다. **Hestia는 지우지 않습니다.** 문서가 어떻게 지금 모습이 되었는지가 그대로 남고, 되돌리기조차 앞선 기록을 덮어쓰지 않습니다.
+One thing sets it apart. **Hestia does not erase.** How a document became what it is stays on the record, and even undoing a change never overwrites what came before.
 
-## 이런 적이 있다면
+## If any of this sounds familiar
 
-- 지난달에 분명히 정리해 둔 문서를 다시 찾지 못한 적
-- 문장이 언제, 왜 바뀌었는지 아무도 설명하지 못한 적
-- 중요한 논의가 문서가 아니라 메신저에 흩어져 사라진 적
-- 나간 사람이 만든 문서에 권한이 그대로 남아 있던 적
+- You never found that document you clearly organized last month
+- Nobody could explain when a sentence changed, or why
+- An important discussion scattered across chat instead of landing in a document
+- Someone left the team and their documents kept their old permissions
 
-## 할 수 있는 일
+## What you can do
 
-### 같이 씁니다
-여러 사람이 같은 문서를 동시에 고칩니다. 편집 내용은 실시간으로 공유되고, 누가 먼저 저장하느라 서로의 작업을 덮어쓰는 일이 없습니다.
+### Write together
+Several people edit the same document at once. Edits are shared in real time, and nobody's work gets overwritten because someone else saved first.
 
-### 판을 남깁니다
-문서 소유자가 버전을 저장하면 그 순간이 통째로 보관됩니다. 판과 판 사이에 **무엇이 지워지고 무엇이 더해졌는지 색으로 비교**해서 볼 수 있습니다.
+### Keep versions
+When the document owner saves a version, that whole moment is preserved. Between any two versions you can **compare what was removed and what was added, marked by color**.
 
-### 되돌려도 잃지 않습니다
-예전 판으로 되돌려도 지금 내용은 사라지지 않습니다. 되돌린 결과가 새 판으로 쌓입니다. 목록에서 없어지는 판은 없습니다.
+### Roll back without losing anything
+Restoring an older version does not delete the current one. The restored result is stacked on as a new version. No version ever disappears from the list.
 
-### 문장에 바로 묻습니다
-문단이 아니라 **문장을 골라** 그 자리에 댓글을 답니다. 답글이 이어지고, 댓글을 지워도 내용만 가려질 뿐 "누가 언제 지웠다"는 사실은 남습니다.
+### Ask questions on a sentence
+Comment on **a specific sentence**, not a whole paragraph, right where it sits. Replies thread underneath, and deleting a comment only hides its content — the fact that someone deleted it, and when, remains.
 
-### 정리합니다
-페이지를 끌어 순서를 바꾸고 상위 문서 아래로 옮깁니다. 지운 문서는 휴지통에서 하위 문서까지 함께 되살립니다.
+### Organize
+Drag pages to reorder them or move them under a parent document. Deleted documents come back from the trash together with their child pages.
 
-### 나눕니다
-이메일로 팀원을 초대하고 소유자·관리자·편집자·읽기 중에서 권한을 정합니다. 권한은 화면에서 감추는 수준이 아니라 데이터베이스에서 직접 막습니다. 문서 소유권도 넘길 수 있습니다.
+### Share
+Invite teammates by email and assign owner, admin, editor, or viewer. Permissions are enforced in the database, not merely hidden in the interface. Document ownership can be transferred.
 
-### 찾습니다
-제목만이 아니라 본문 문장을 찾습니다. 어디서든 `Ctrl / ⌘ K`.
+### Search
+Search the text of your documents, not just their titles. `Ctrl / ⌘ K` from anywhere.
 
-### 쓰기 편합니다
-제목·목록·인용·표·코드 블록을 마크다운처럼 입력합니다. 이미지는 본문에 끌어다 놓으면 놓은 자리에 들어갑니다. 밝은 화면과 어두운 화면 모두 지원하고, 좁은 화면에서도 편집됩니다.
+### Write comfortably
+Type headings, lists, quotes, tables, and code blocks the way you write Markdown. Drop an image into the text and it lands where you dropped it. Light and dark themes are both supported, and editing works on narrow screens.
 
-## 지금 상태
+## Where it stands
 
-**프로토타입입니다.** 가입해서 워크스페이스를 만들고, 문서를 쓰고, 팀원을 초대해 함께 편집하는 데까지 실제로 동작합니다.
+**This is a prototype.** Signing up, creating a workspace, writing documents, and inviting teammates to edit alongside you all work for real.
 
-아직 공개된 데모 주소는 없습니다. 직접 설치해서 실행하는 단계입니다.
+There is no public demo address yet. Running it means installing it yourself.
 
-## 준비 중
+## In progress
 
-- 이미지 말고 일반 첨부파일
-- 요금제와 가입 절차
+- General file attachments, not just images
+- Pricing plans and the sign-up flow
 
-## 만든 방식
+## How it's built
 
-Next.js · React · TypeScript · TipTap · Supabase(PostgreSQL).
+Next.js · React · TypeScript · TipTap · Supabase (PostgreSQL).
 
-설치와 배포 방법은 [README](README.md)와 [배포 가이드](docs/DEPLOYMENT.md)에 있습니다.
+Installation and deployment instructions are in the [README](README.md) and the [deployment guide](docs/DEPLOYMENT.md).
 
-## 라이선스
+## License
 
-Copyright © 2026 Promethena. All rights reserved. 소스코드 및 셀프호스팅 사용 조건은 [LICENSE.md](LICENSE.md)를 따릅니다.
+Copyright © 2026 Promethena. All rights reserved. Source code and self-hosting terms follow [LICENSE.md](LICENSE.md).
