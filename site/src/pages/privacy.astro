@@ -1,6 +1,12 @@
 ---
+import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import { CONTACT_EMAIL } from "../lib/i18n";
+
+const productPolicies = (await getCollection("legal"))
+  .filter((e) => e.id.endsWith(".ko") && e.data.verifiedAgainstBuild)
+  .map((e) => ({ name: e.data.product, href: `/privacy/${e.id.replace(/\.ko$/, "")}` }))
+  .sort((a, b) => a.name.localeCompare(b.name));
 ---
 
 <Base lang="ko" altPath="/en/privacy" title="개인정보처리방침 — Promethena">
@@ -58,6 +64,17 @@ import { CONTACT_EMAIL } from "../lib/i18n";
       사이트에 결제나 계정 기능이 추가되는 등 실제로 수집하는 정보가 늘어나면 이 문서를 그에 맞게
       업데이트합니다. 변경 사항은 이 페이지에 반영되며, 게시 시점부터 적용됩니다.
     </p>
+
+    <h2>제품별 개인정보처리방침</h2>
+    <p>
+      이 문서는 promethena.co.kr 웹사이트에만 적용됩니다. 각 제품은 수집하는 정보가 달라
+      별도의 방침을 둡니다.
+    </p>
+    {productPolicies.length > 0 && (
+      <ul>
+        {productPolicies.map((p) => <li><a href={p.href}>{p.name} 개인정보처리방침</a></li>)}
+      </ul>
+    )}
 
     <h2>8. 문의</h2>
     <p>

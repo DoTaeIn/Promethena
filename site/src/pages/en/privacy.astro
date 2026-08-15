@@ -1,6 +1,12 @@
 ---
+import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import { CONTACT_EMAIL } from "../../lib/i18n";
+
+const productPolicies = (await getCollection("legal"))
+  .filter((e) => e.id.endsWith(".en") && e.data.verifiedAgainstBuild)
+  .map((e) => ({ name: e.data.product, href: `/en/privacy/${e.id.replace(/\.en$/, "")}` }))
+  .sort((a, b) => a.name.localeCompare(b.name));
 ---
 
 <Base lang="en" altPath="/privacy" title="Privacy Policy — Promethena">
@@ -59,6 +65,17 @@ import { CONTACT_EMAIL } from "../../lib/i18n";
       If the Site later adds payments or accounts and starts collecting more data, this document
       will be updated to match. Changes take effect once posted here.
     </p>
+
+    <h2>Product privacy policies</h2>
+    <p>
+      This document covers the promethena.co.kr website only. Each product collects different
+      information and has its own policy.
+    </p>
+    {productPolicies.length > 0 && (
+      <ul>
+        {productPolicies.map((p) => <li><a href={p.href}>{p.name} Privacy Policy</a></li>)}
+      </ul>
+    )}
 
     <h2>8. Contact</h2>
     <p>

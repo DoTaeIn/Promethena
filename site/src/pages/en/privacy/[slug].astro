@@ -1,0 +1,72 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+import { CONTACT_EMAIL } from "../../../lib/i18n";
+
+// Drafts without verifiedAgainstBuild are excluded from the build.
+export async function getStaticPaths() {
+  const all = await getCollection("legal");
+  const koSlugs = new Set(all.filter((e) => e.id.endsWith(".ko")).map((e) => e.id.replace(/\.ko$/, "")));
+  return all
+    .filter((e) => e.id.endsWith(".en") && e.data.verifiedAgainstBuild)
+    .map((entry) => {
+      const slug = entry.id.replace(/\.en$/, "");
+      return { params: { slug }, props: { entry, hasKo: koSlugs.has(slug) } };
+    });
+}
+
+const { entry, hasKo } = Astro.props;
+const { Content } = await render(entry);
+const slug = entry.id.replace(/\.en$/, "");
+---
+
+<Base lang="en" altPath={hasKo ? `/privacy/${slug}` : undefined} title={`${entry.data.product} Privacy Policy — Promethena`}>
+  <article class="legal prose">
+    <a class="back" href={`/en/p/${slug}`}>← {entry.data.product}</a>
+    <h1>{entry.data.product} Privacy Policy</h1>
+    <p class="updated">Last updated: {entry.data.updated}</p>
+
+    <Content />
+
+    <h2>Contact</h2>
+    <p>
+      For privacy questions, email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+    </p>
+    <p class="updated">
+      This policy covers {entry.data.product} only. For the Promethena website itself, see the
+      <a href="/en/privacy">site privacy policy</a>.
+    </p>
+  </article>
+</Base>
+
+<style>
+  .legal {
+    padding: 24px 0 60px;
+  }
+  .updated {
+    color: var(--ink-dim);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+  .back {
+    display: inline-block;
+    margin-bottom: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ink-dim);
+    text-decoration: none;
+  }
+  .legal :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.9rem;
+  }
+  .legal :global(th),
+  .legal :global(td) {
+    border: 1px solid var(--rule, #2a2a2a);
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+</style>
