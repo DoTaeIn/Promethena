@@ -5,11 +5,13 @@ import InquiryLinks from "./InquiryLinks.astro";
 interface Props {
   lang: Lang; backHref: string; name: string; tagline: string;
   status: "idea" | "prototype" | "beta" | "live"; tags: string[]; price?: number; demo?: string;
+  /** 대조 완료된 방침이 있을 때만 넘어온다. */
+  privacyHref?: string;
 }
-const { lang, backHref, name, tagline, status, tags, price, demo } = Astro.props;
+const { lang, backHref, name, tagline, status, tags, price, demo, privacyHref } = Astro.props;
 const copy = lang === "ko"
-  ? { waitlist: "개인 사용 대기 등록", demo: "데모 보기", buy: "개인 사용 문의", idle: "아직 구상 단계입니다.", free: "무료" }
-  : { waitlist: "Join personal waitlist", demo: "View demo", buy: "Ask about personal use", idle: "Still in the idea stage.", free: "Free" };
+  ? { waitlist: "개인 사용 대기 등록", demo: "데모 보기", buy: "개인 사용 문의", idle: "아직 구상 단계입니다.", free: "무료", privacy: "개인정보처리방침" }
+  : { waitlist: "Join personal waitlist", demo: "View demo", buy: "Ask about personal use", idle: "Still in the idea stage.", free: "Free", privacy: "Privacy policy" };
 ---
 
 <a class="back" href={backHref}>{ui[lang].back}</a>
@@ -29,9 +31,29 @@ const copy = lang === "ko"
     {status !== "idea" && <InquiryLinks lang={lang} product={name} compact />}
   </div>
   <div class="prose"><slot /></div>
+  {privacyHref && (
+    <footer class="detail-legal">
+      <a href={privacyHref}>{copy.privacy} →</a>
+    </footer>
+  )}
 </article>
 
 <style>
+  .detail-legal {
+    margin-top: 40px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule, #2a2a2a);
+  }
+  .detail-legal a {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ink-dim);
+    text-decoration: none;
+  }
+  .detail-legal a:hover {
+    color: var(--ink, inherit);
+  }
+
   .back { display: inline-block; margin: 24px 0; font-family: var(--font-mono); font-size: .8rem; color: var(--ink-dim); text-decoration: none; }
   .detail { background: var(--bg-panel); border: 1px solid var(--line); border-radius: 4px; padding: 32px; margin-bottom: 40px; }
   .status-label { font-family: var(--font-mono); font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--steel-ink); }

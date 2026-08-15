@@ -19,12 +19,15 @@ export async function getStaticPaths() {
 
 const { entry, hasEn } = Astro.props;
 const { Content } = await render(entry);
+const legal = await getCollection("legal");
+const policy = legal.find((e) => e.id === `${entry.id.replace(/\.ko$/, "")}.ko` && e.data.verifiedAgainstBuild);
 const lang = "ko";
 const slug = entry.id.replace(/\.ko$/, "");
 ---
 
 <Base lang={lang} altPath={hasEn ? `/en/p/${slug}` : undefined} title={`${entry.data.name} — Promethena`}>
   <ProductDetail
+    privacyHref={policy ? `/privacy/${policy.data.product}` : undefined}
     lang={lang}
     backHref="/"
     name={entry.data.name}
